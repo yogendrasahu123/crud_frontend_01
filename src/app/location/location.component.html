@@ -1,0 +1,151 @@
+<div class="container mt-1">
+  <nav class="navbar navbar-light bg-secondary">
+    <div class="container-fluid">
+      <h1 style="color: aliceblue">Angular CRUD</h1>
+      <div class="d-flex">
+        <button class="btn btn-warning mb-2" (click)="toggleForm()">
+          Add Employee
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Form -->
+  <div *ngIf="showForm" class="card p-3 mb-3">
+    <form>
+      <div class="mb-1">
+        <label>First Name</label>
+        <input type="text" placeholder="Enter First Name" class="form-control" [(ngModel)]="fname" name="fname"
+          maxlength="10" required />
+      </div>
+      <div class="mb-1">
+        <label>Last Name</label>
+        <input type="text" placeholder="Enter Last Name" class="form-control" [(ngModel)]="lname" name="lname" required
+          maxlength="10" />
+      </div>
+      <div class="mb-1">
+        <label>Email</label>
+        <input type="email" class="form-control" [(ngModel)]="email" name="email" required
+          placeholder="Enter Email Address" />
+      </div>
+      <div class="mb-1">
+        <label>Phone Number</label>
+        <input type="tel" class="form-control" [(ngModel)]="number" name="number" required
+          placeholder="Enter Phone Number" />
+      </div>
+      <div class="mb-1">
+        <label>Salary</label>
+        <input type="number" class="form-control" [(ngModel)]="salary" name="salary" required
+          placeholder="Enter Your Salary" />
+      </div>
+      <div class="mb-1">
+        <label for="dob">Date Of Birth</label>
+        <input type="date" id="dob" class="form-control" [(ngModel)]="dob" name="dob" />
+      </div>
+      <div class="mb-1">
+        <label>Select Your Course</label>
+        <select name="course" class="form-control" [(ngModel)]="course">
+          <option value="">Angular</option>
+          <option value="Javascript">Javascript</option>
+          <option value="Reactjs">Reactjs</option>
+          <option value="vuejs">Vuejs</option>
+        </select>
+      </div>
+
+
+
+      <div class="mb-1">
+        <label for="District">District</label>
+        <select name="District" id="District" (change)="changeDistrict()" [(ngModel)]="selectedDistrict"
+          class="form-control">
+          <option value="">-- Select District --</option>
+          <option *ngFor="let district of districtList" [value]="district.district_id">
+            {{ district.district_name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-1">
+        <label for="block">Block</label>
+        <select name="block" id="block" (change)="changeBlock()" [(ngModel)]="selectedBlock" class="form-control">
+          <option value="">-- Select Block --</option>
+          <option *ngFor="let block of blockList" [value]="block.block_id">
+            {{ block.block_name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-1">
+        <label for="village">Village</label>
+        <select name="village" id="village" [(ngModel)]="selectedVillage" class="form-control">
+          <option value="">-- Select Village --</option>
+          <option *ngFor="let village of villegeList" [value]="village.village_id">
+            {{ village.village_name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-1">
+        <input type="checkbox" id="checkbox1" name="checkbox1" [(ngModel)]="checkbox1" />
+        &nbsp;
+        <label for="checkbox1">All Information are true</label>
+      </div>
+
+      <div class="mt-3">
+        <button type="button" *ngIf="!isUpdate" class="btn btn-primary" (click)="Add()">
+          Submit
+        </button>
+        <button type="button" *ngIf="isUpdate" class="btn btn-warning" (click)="update()">
+          Update
+        </button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="cancelForm()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Table -->
+  <table class="table table-bordered" *ngIf="addedData.length > 0">
+    <thead class="table-dark">
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Mobile No.</th>
+        <th>Salary</th>
+        <th>DOB</th>
+        <th>Course</th>
+        <th>District</th>
+        <th>Block</th>
+        <th>Village</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of addedData; let i = index">
+        <td>{{ data.fname }}</td>
+        <td>{{ data.lname }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.number }}</td>
+        <td>{{ data.salary }}</td>
+        <td>{{ data.dob | date : "dd-MM-yyyy" }}</td>
+        <td>{{ data.course }}</td>
+        <td>{{ data.selectedDistName }}</td>
+        <td>{{ data.selectedBlockName }}</td>
+        <td>{{ data.selectedVillageName }}</td>
+        <td>
+          <div class="action_key">
+            <button class="btn btn-info btn-sm" (click)="editDetails(data)">
+              Edit
+            </button>
+
+            <button class="btn btn-danger btn-sm" (click)="deleteData(i)">
+              Delete
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

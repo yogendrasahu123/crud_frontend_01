@@ -1,0 +1,164 @@
+<div class="container">
+  <nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+      <h1 style="color: aliceblue">Angular Crud</h1>
+      <div class="d-flex">
+        <button
+          class="btn btn-success"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          Add Employee
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <table class="table mt-3" *ngIf="addedData.length > 0">
+    <thead>
+      <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email ID</th>
+        <th scope="col">MObile No.</th>
+        <th scope="col">Salary</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of addedData; let i = index">
+        <td>{{ data.fname }}</td>
+        <td>{{ data.lname }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.number }}</td>
+        <td>{{ data.salary }}</td>
+
+        <td>
+          <button
+            class="btn btn-info"
+            type="submit"
+            (click)="editDetails(data.email)"
+          >
+            Edit
+          </button>
+          <button
+            class="btn btn-danger max-3"
+            type="submit"
+            (click)="deleteData(i)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Employee Details
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="fname" class="form-label">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="fname"
+                name="fname"
+                [(ngModel)]="fname"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="lname" class="form-label">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lname"
+                name="lname"
+                [(ngModel)]="lname"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                [(ngModel)]="email"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="number" class="form-label">Phone Number</label>
+              <input
+                type="number"
+                class="form-control"
+                id="number"
+                name="number"
+                [(ngModel)]="number"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="salary" class="form-label">salary</label>
+              <input
+                type="number"
+                class="form-control"
+                id="salary"
+                name="salary"
+                [(ngModel)]="salary"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            *ngIf="isUpdate == false"
+            type="submit"
+            class="btn btn-primary"
+            (click)="Add()"
+          >
+            Submit
+          </button>
+
+          <button
+            *ngIf="isUpdate == true"
+            type="submit"
+            class="btn btn-primary"
+            (click)="update()"
+          >
+            update
+          </button>
+          <!-- <button type="submit" class="btn btn-primary" (click)="Add()">
+            Add
+          </button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

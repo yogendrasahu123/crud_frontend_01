@@ -1,0 +1,69 @@
+Container .container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Form Card */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+}
+
+/* Form Fields */
+input.form-control {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Buttons */
+button {
+  min-width: 90px;
+}
+
+button.btn-success {
+  font-weight: bold;
+}
+
+button.btn-info {
+  color: white;
+}
+
+button.btn-warning {
+  color: white;
+}
+
+button.btn-secondary {
+  color: white;
+}
+
+/* Table Styling */
+.table {
+  border: 1px solid #dee2e6;
+}
+
+.table th,
+.table td {
+  vertical-align: middle !important;
+}
+
+.table th {
+  background-color: #343a40;
+  color: white;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .table {
+    font-size: 14px;
+  }
+
+  button {
+    margin-bottom: 5px;
+  }
+}
