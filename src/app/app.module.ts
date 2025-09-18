@@ -12,7 +12,10 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { LocationComponent } from './location/location.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { BackendCrudComponent } from './backend-crud/backend-crud.component';
+import { FormServiceService } from './services/form-service.service';
+import { NewCrudComponent } from './new-crud/new-crud.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,8 +24,11 @@ import { LocationComponent } from './location/location.component';
     EmployeeDashboardComponent,
     DashboardComponent,
     LocationComponent,
+    BackendCrudComponent,
+    NewCrudComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -30,7 +36,7 @@ import { LocationComponent } from './location/location.component';
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [],
+  providers: [FormServiceService],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
